@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-#
-# Module that defines the BaseModel class.
-#
-# Provides a base class, that serves as a foundation for other classes.
-# It defines common attributes and methods to be inherited
+"""
+Module that defines the BaseModel class.
 
-import datetime
-import uuid
+Provides a base class, that serves as a foundation for other classes.
+It defines common attributes and methods to be inherited
+"""
+from datetime import datetime
+from uuid import uuid4
 
 
 class BaseModel():
@@ -27,13 +27,13 @@ class BaseModel():
             for key, val in kwargs.items():
                 if key != "__class__":
                     if key in ['created_at', 'updated_at']:
-                        setattr(self, key, datetime.datetime.fromisoformat(val))
+                        setattr(self, key, datetime.fromisoformat(val))
                     else:
                         setattr(self, key, val)
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.today()
-            self.updated_at = datetime.datetime.today()
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """
@@ -43,13 +43,13 @@ class BaseModel():
             Formatted str: [<class name>] (<self.id>) <self.__dict__>
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-    
+
     def save(self):
         """
         Updates the public instance attribute 'update_at'
         with the current datetime.
         """
-        self.updated_at = datetime.datetime.today()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """
