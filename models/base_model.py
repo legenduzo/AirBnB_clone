@@ -31,9 +31,11 @@ class BaseModel():
                     else:
                         setattr(self, key, val)
         else:
+            from models import storage
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """
@@ -49,7 +51,9 @@ class BaseModel():
         Updates the public instance attribute 'update_at'
         with the current datetime.
         """
+        from models import storage
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
