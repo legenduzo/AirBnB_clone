@@ -34,7 +34,7 @@ class FileStorage():
         Returns the __objects dictionary
         """
         return self.__objects
-    
+
     def new(self, obj):
         """
         Adds an object to `__objects`.
@@ -45,7 +45,6 @@ class FileStorage():
         """
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects.update({key: obj})
-        
 
     def save(self):
         """
@@ -60,7 +59,7 @@ class FileStorage():
                     for key, obj in self.__objects.items()
 
                 }
-                f.write(json.dumps(serialized))
+                f.write(json.dumps(serialized, indent=2))
 
     def reload(self):
         """
