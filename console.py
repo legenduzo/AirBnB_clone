@@ -4,6 +4,7 @@ AirBnB console. Extends pythons's cmd module
 """
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """
     The HBNBCommand class
@@ -32,6 +33,7 @@ class HBNBCommand(cmd.Cmd):
         Catches empty lines and does nothing
         """
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
