@@ -6,28 +6,28 @@ Module that defines the FileStorage class.
 and deserializing JSON files back to instances.
 """
 from models.base_model import BaseModel
+from models.user import User
 import json
 
-clss = {"BaseModel": BaseModel}
+clss = {
+    "BaseModel": BaseModel,
+    "User": User
+}
 
 
 class FileStorage():
     """
     Class responsible for handling file storage using JSON.
-    """
-    def __init__(self):
-        """
-        Class instantiation method.
 
-        Private class attributes:
-            - `__file_path` (str): path to the JSON file.
-            - `__objects` (dict): empty in the beginning.
-                stores all objects by <class name>.id
-                (ex: BaseModel object with id=12121212,
-                    the key will be BaseModel.12121212)
-        """
-        self.__file_path = "storage/file.json"
-        self.__objects = {}
+    Private class attributes:
+        - `__file_path` (str): path to the JSON file.
+        - `__objects` (dict): empty in the beginning.
+            stores all objects by <class name>.id
+            (ex: BaseModel object with id=12121212,
+                the key will be BaseModel.12121212)
+    """
+    __file_path = "storage/file.json"
+    __objects = {}
 
     def all(self):
         """
@@ -59,7 +59,7 @@ class FileStorage():
                     for key, obj in self.__objects.items()
 
                 }
-                f.write(json.dumps(serialized, indent=2))
+                json.dump(serialized, f, indent=2)
 
     def reload(self):
         """
