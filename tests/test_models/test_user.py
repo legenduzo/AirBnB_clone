@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-Unittest module for the FileStorage class
+Unittest module for the User class
 """
-from models.engine import file_storage
+from models.user import User
 import unittest
 
 
