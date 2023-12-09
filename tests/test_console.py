@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
-Unittest module for the FileStorage class
+Unittest module for the Console
 """
-from models.engine import file_storage
 import unittest
 
 
