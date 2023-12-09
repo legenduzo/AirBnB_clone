@@ -6,12 +6,12 @@ import unittest
 
 
 class TestInstantiation(unittest.TestCase):
-	"""
-	Instantiation test 
-	-> To be added
-	"""
-	pass
+    """
+    Instantiation test
+    -> To be added
+    """
+    pass
 
 
 if __name__ == "__main__":
-	unittest.main()
+    unittest.main()

@@ -43,8 +43,9 @@ class FileStorage():
         Args:
             obj (object): the object to be added
         """
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects.update({key: obj})
+        if obj is not None:
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            self.__objects.update({key: obj})
 
     def save(self):
         """

@@ -40,7 +40,7 @@ class TestInstantiation(unittest.TestCase):
         """Tests the uniqueness of IDs"""
         self.b = BaseModel()
         self.assertNotEqual(self.a.id, self.b.id)
-    
+
     def test_timestamp_order(self):
         """Tests the created_at and updated_at Timing"""
         self.a.save()
