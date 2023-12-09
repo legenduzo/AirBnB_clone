@@ -3,10 +3,11 @@
 Command Interpreter Entry Point Module
 """
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import cmd
 
-clss = {"BaseModel": BaseModel}
+clss = {"BaseModel": BaseModel, "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -48,10 +49,13 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
+            return
         if args[0] not in clss.keys():
             print("** class doesn't exist **")
+            return
         if len(args) < 2:
             print("** instance id missing **")
+            return
 
         storage.reload()
         objs = storage.all()
@@ -101,19 +105,18 @@ class HBNBCommand(cmd.Cmd):
         (hbnb) all
         """
         storage.reload()
-        objs = storage.all()
         args = line.split()
         if len(args) > 0:
             if args[0] in clss.keys():
                 instances = [
                     obj for k, obj in storage.all().items()
-                    if k.startswith(f"{args[0]}")
+                    if k.startswith(f"{args[0]}.")
                 ]
             else:
                 print("** class doesn't exist")
                 return
         else:
-            instances = list(storage.all().values())
+            instances = set(storage.all().values())
 
         for inst in instances:
             print(str(inst))
