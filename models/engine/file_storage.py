@@ -13,6 +13,7 @@ clss = {
     "BaseModel": BaseModel,
     "User": User
 }
+"""clss (dict): dictionary of class objects"""
 
 
 class FileStorage():
