@@ -8,7 +8,10 @@ It includes:
 - An API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them)
 
 ### Final product
-![hbnb final image](/assets/airbnb_clone)
+![final image](/assets/airbnb_clone)
+
+### Data diagram
+![data diagram](assets/data_diagram)
 
 ## 1 - The console
 The console is a command interpreter that enables developers to manage objects in the project from a command-line interface. With it you can:
@@ -18,4 +21,4 @@ The console is a command interpreter that enables developers to manage objects i
 - Update attributes of an object
 - Destroy an object
 
-![console](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20231209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231209T210913Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4a387793f03fdc345b9908096946e739bc0a538dac9af851a0cdfbdb5371bce0)
+![console](/assets/the_console.png)
