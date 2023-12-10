@@ -111,21 +111,14 @@ class HBNBCommand(cmd.Cmd):
             (hbnb) all
         """
         storage.reload()
-        args = line.split()
-        if len(args) > 0:
-            if args[0] in clss.keys():
-                instances = [
-                    obj for k, obj in storage.all().items()
-                    if k.startswith(f"{args[0]}.")
-                ]
-            else:
-                print("** class doesn't exist")
-                return
-        else:
-            instances = set(storage.all().values())
+        if line and line not in clss.keys():
+            print("** class doesn't exist **")
+            return
+        instances = [
+                str(obj) for key, obj in storage.all().items()
+                if not line or key.startswith(line)]
 
-        for inst in instances:
-            print(str(inst))
+        print(instances)
 
     def do_update(self, line):
         """
