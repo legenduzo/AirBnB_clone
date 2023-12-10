@@ -8,6 +8,9 @@ from models import storage
 import cmd
 
 clss = {"BaseModel": BaseModel, "User": User}
+"""clss (dict): A dictionary of all external classes
+used for commandline data manipulation
+"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,14 +19,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-    Create a new instance of the given class.
-    Save it to the JSON file and print its ID.
+        Create a new instance of the given class.
+        Save it to the JSON file and print its ID.
 
-    Usage:
-        (hbnb) create <class_name>
+        Usage:
+            (hbnb) create <class_name>
 
-    Example:
-        (hbnb) create BaseModel
+        Example:
+            (hbnb) create BaseModel
         """
         if line:
             if line in clss.keys():
@@ -37,14 +40,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-    Display the string representation of an instance,
-    given its class name and ID.
+        Display the string representation of an instance,
+        given its class name and ID.
 
-    Usage:
-        (hbnb) show <class_name> <instance_id>
+        Usage:
+            (hbnb) show <class_name> <instance_id>
 
-    Example:
-        (hbnb) show BaseModel 1234-1234-1234
+        Example:
+            (hbnb) show BaseModel 1234-1234-1234
         """
         args = line.split()
         if len(args) == 0:
@@ -67,14 +70,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-    Delete an instance based on the class name and ID.
-    Changes are saved to the JSON file.
+        Delete an instance based on the class name and ID.
+        Changes are saved to the JSON file.
 
-    Usage:
-        (hbnb) destroy <class_name> <instance_id>
+        Usage:
+            (hbnb) destroy <class_name> <instance_id>
 
-    Example:
-        (hbnb) destroy BaseModel 1234-1234-1234
+        Example:
+            (hbnb) destroy BaseModel 1234-1234-1234
         """
         args = line.split()
         if len(args) == 0:
@@ -94,15 +97,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-    Display the string representation of all instances,
-    filtered by an optional class name.
+        Display the string representation of all instances,
+        filtered by an optional class name.
 
-    Usage:
-        (hbnb) all <class_name(optional)>
+        Usage:
+            (hbnb) all <class_name(optional)>
 
-    Examples:
-        (hbnb) all BaseModel
-        (hbnb) all
+        Examples:
+            (hbnb) all BaseModel
+            (hbnb) all
         """
         storage.reload()
         args = line.split()
@@ -123,14 +126,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-    Updates an instance based on the class name and id,
-    by adding or updating an attribute. (saved to the JSON file)
+        Updates an instance based on the class name and id,
+        by adding or updating an attribute. (saved to the JSON file)
 
-    Usage:
-        (hbnb) update <class_name> <id> <attribute_name> "<attribute_value>"
+        Usage:
+            (hbnb) update <cls_name> <id> <attr_name> "<attr_value>"
 
-    Example:
-        (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"
+        Example:
+            (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
         args = line.split()
         if len(args) == 0:
