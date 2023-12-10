@@ -8,6 +8,8 @@ It defines common attributes and methods to be inherited
 from datetime import datetime
 from uuid import uuid4
 
+d_format = "%Y-%m-%dT%H:%M:%S.%f"
+
 
 class BaseModel():
     """
@@ -27,7 +29,7 @@ class BaseModel():
             for key, val in kwargs.items():
                 if key != "__class__":
                     if key in ['created_at', 'updated_at']:
-                        setattr(self, key, datetime.fromisoformat(val))
+                        setattr(self, key, datetime.strptime(val, d_format))
                     else:
                         setattr(self, key, val)
         else:
