@@ -52,16 +52,12 @@ class FileStorage():
         """
         Serializes `__objects` to the JSON file
         """
+        objs = {}
+        for k in self.__objects:
+            objs[k] = self.__objects[k].to_dict()
         with open(self.__file_path, 'w') as f:
-            if self.__objects is None:
-                f.write("{}")
-            else:
-                serialized = {
-                    key: obj.to_dict()
-                    for key, obj in self.__objects.items()
+            json.dump(objs, f)
 
-                }
-                json.dump(serialized, f)
 
     def reload(self):
         """
@@ -71,7 +67,7 @@ class FileStorage():
         try:
             with open(self.__file_path, 'r') as f:
                 load = json.load(f)
-                for k in load:
-                    self.__objects[k] = clss[load[k]["__class__"]](**load[k])
+            for k in load:
+                self.__objects[k] = clss[load[k]["__class__"]](**load[k])
         except Exception as e:
             pass
