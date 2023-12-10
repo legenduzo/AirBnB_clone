@@ -27,7 +27,7 @@ class FileStorage():
             (ex: BaseModel object with id=12121212,
                 the key will be BaseModel.12121212)
     """
-    __file_path = "storage/file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -61,7 +61,7 @@ class FileStorage():
                     for key, obj in self.__objects.items()
 
                 }
-                json.dump(serialized, f, indent=2)
+                json.dump(serialized, f)
 
     def reload(self):
         """
