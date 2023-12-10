@@ -61,7 +61,7 @@ class FileStorage():
                     for key, obj in self.__objects.items()
 
                 }
-                json.dump(serialized, f, indent=2)
+                json.dump(serialized, f)
 
     def reload(self):
         """
