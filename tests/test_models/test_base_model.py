@@ -7,6 +7,13 @@ from datetime import datetime
 from models.base_model import BaseModel
 
 
+class TestBaseModel(unittest.TestCase):
+    """
+    Test addition to check the cause for checker failure
+    """
+    pass
+
+
 class TestInstantiation(unittest.TestCase):
     """
     Instantiation tests for BaseModel class.
