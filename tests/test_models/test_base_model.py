@@ -9,7 +9,8 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """
-    Test addition to check the cause for checker failure
+    Test added to check the cause for checker failure
+    -> 0 tests
     """
     pass
 
@@ -27,29 +28,39 @@ class TestInstantiation(unittest.TestCase):
         self.a = BaseModel()
 
     def test_init(self):
-        """Tests instance creation"""
+        """
+        Tests instance creation
+        """
         self.assertIsNotNone(self.a)
 
     def test_instance_attributes(self):
-        """Test instance attributes"""
+        """
+        Test instance attributes
+        """
         self.assertEqual(type(self.a.id), str)
         self.assertEqual(type(self.a.created_at), datetime)
         self.assertEqual(type(self.a.updated_at), datetime)
 
     def test_more_variables(self):
-        """Tests new instance variables"""
+        """
+        Tests new instance variables
+        """
         self.a.my_number = 15
         self.a.name = "Another day"
         self.assertEqual(self.a.my_number, 15)
         self.assertEqual(self.a.name, "Another day")
 
     def test_id_uniqueness(self):
-        """Tests the uniqueness of IDs"""
+        """
+        Tests the uniqueness of IDs
+        """
         self.b = BaseModel()
         self.assertNotEqual(self.a.id, self.b.id)
 
     def test_timestamp_order(self):
-        """Tests the created_at and updated_at Timing"""
+        """
+        Tests the created_at and updated_at Timing
+        """
         self.a.save()
         self.assertLess(self.a.created_at, self.a.updated_at)
         self.b = BaseModel()
@@ -72,13 +83,17 @@ class TestInitArguments(unittest.TestCase):
         self.new_model = BaseModel(**self.my_json)
 
     def test_new_instance(self):
-        """Tests new instance instantiation"""
+        """
+        Tests new instance instantiation
+        """
         self.assertEqual(self.my_model.id, self.new_model.id)
         self.assertEqual(self.my_model.created_at, self.new_model.created_at)
         self.assertEqual(self.my_model.updated_at, self.new_model.updated_at)
 
     def test_creation(self):
-        """Tests the correct creation of a new instance"""
+        """
+        Tests the correct creation of a new instance
+        """
         self.assertIsNot(self.my_model, self.new_model)
 
     def test_init_with_args(self):
@@ -89,7 +104,9 @@ class TestInitArguments(unittest.TestCase):
         self.assertNotEqual(new.updated_at, datetime(2022, 1, 1, 13, 0, 0))
 
     def test_init_with_kwargs(self):
-        """Test instantiation with keyword arguments"""
+        """
+        Test instantiation with keyword arguments
+        """
         creation = "2022-02-01T10:00:00"
         update = "2022-02-01T11:00:00"
         b = BaseModel(id="456", created_at=creation, updated_at=update)
@@ -98,7 +115,9 @@ class TestInitArguments(unittest.TestCase):
         self.assertEqual(b.updated_at, datetime(2022, 2, 1, 11, 0, 0))
 
     def test_init_with_mixed_args_kwargs(self):
-        """Test instantiation with mixed positional and keyword arguments"""
+        """
+        Test instantiation with mixed positional and keyword arguments
+        """
         creation = "2022-03-01T08:00:00"
         update = "2022-03-01T09:00:00"
         mixed_model = BaseModel("789", created_at=creation, updated_at=update)
@@ -107,7 +126,9 @@ class TestInitArguments(unittest.TestCase):
         self.assertEqual(mixed_model.updated_at, datetime(2022, 3, 1, 9, 0, 0))
 
     def test_init_with_invalid_datetime(self):
-        """Test instantiation with invalid datetime format"""
+        """
+        Test instantiation with invalid datetime format
+        """
         with self.assertRaises(ValueError):
             creation = "2022-04-01Tinvalid"
             update = "2022-04-01T12:00:00"
@@ -130,13 +151,17 @@ class TestMethods(unittest.TestCase):
         self.a = BaseModel()
 
     def test_save_method(self):
-        """Test the save() method"""
+        """
+        Test the save() method
+        """
         initial_update_at = self.a.updated_at
         self.a.save()
         self.assertNotEqual(self.a.updated_at, initial_update_at)
 
     def test_to_dict_method(self):
-        """Test the to_dict() method"""
+        """
+        Test the to_dict() method
+        """
         obj_dict = self.a.to_dict()
         self.assertIsInstance(obj_dict, dict)
         self.assertIn('__class__', obj_dict)
@@ -147,7 +172,9 @@ class TestMethods(unittest.TestCase):
         self.assertEqual(obj_dict['updated_at'], self.a.updated_at.isoformat())
 
     def test_str_method(self):
-        """Test the __str__() method"""
+        """
+        Test the __str__() method
+        """
         str_representation = str(self.a.to_dict())
         self.assertIn(self.a.id, str_representation)
         self.assertIn(self.a.__class__.__name__, str_representation)
