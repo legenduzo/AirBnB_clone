@@ -156,11 +156,17 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         instance = objs[key]
-        if hasattr(instance, args[2]):
-            origin = type(getattr(instance, args[2]))
-            setattr(instance, args[2], origin(args[3]))
+        attr_name, attr_val = args[2], args[3]
+        if attr_val.startswith('"') and attr_val.endswith('"'):
+            attr_value = attr_val.strip('"')
         else:
-            setattr(instance, args[2], args[3])
+            attr_value = (
+                    int(attr_val)
+                    if '.' not in attr_val
+                    else float(attr_val)
+                    )
+
+        setattr(instance, attr_name, attr_value)
         storage.save()
 
     def emptyline(self):
