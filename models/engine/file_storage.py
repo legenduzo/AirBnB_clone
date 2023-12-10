@@ -58,7 +58,6 @@ class FileStorage():
         with open(self.__file_path, 'w') as f:
             json.dump(objs, f)
 
-
     def reload(self):
         """
         Deserializes the JSON file to __objects (if the file exits).
