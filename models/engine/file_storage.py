@@ -6,12 +6,22 @@ Module that defines the FileStorage class.
 and deserializing JSON files back to instances.
 """
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models.user import User
 import json
 
 clss = {
     "BaseModel": BaseModel,
-    "User": User
+    "User": User,
+    "Place": Place,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Review": Review
 }
 """clss (dict): dictionary of class objects"""
 

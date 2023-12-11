@@ -3,11 +3,24 @@
 Command Interpreter Entry Point Module
 """
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models.user import User
 from models import storage
 import cmd
 
-clss = {"BaseModel": BaseModel, "User": User}
+clss = {
+    "BaseModel": BaseModel,
+    "User": User,
+    "Place": Place,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Review": Review
+}
 """clss (dict): A dictionary of all external classes
 used for commandline data manipulation
 """
@@ -159,6 +172,9 @@ class HBNBCommand(cmd.Cmd):
         attr_name, attr_val = args[2], args[3]
         if attr_val.startswith('"') and attr_val.endswith('"'):
             attr_value = attr_val.strip('"')
+        elif hasattr(instance, attr_name):
+            attr_type = type(getattr(instance, attr_name))
+            attr_value = attr_type(attr_val)
         else:
             attr_value = (
                     int(attr_val)
