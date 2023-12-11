@@ -11,7 +11,7 @@ from uuid import uuid4
 d_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 
-class BaseModel():
+class BaseModel:
     """
     Base class for other classes to inherit from.
     Defines common attributes/methods for other classes.
