@@ -185,6 +185,18 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attr_name, attr_value)
         storage.save()
 
+    def do_count(self, line):
+        """
+        Count the number of instances of a class.
+        """
+        storage.reload()
+        all_objects = storage.all()
+        count = 0
+        for key in all_objects:
+            if key.startswith(f"{line}"):
+                count += 1
+        print(count)
+
     def emptyline(self):
         """"Handles empty line input."""
         pass
@@ -207,6 +219,8 @@ class HBNBCommand(cmd.Cmd):
             command = command[:-2]
             if command == 'all' and cls in clss.keys():
                 self.do_all(cls)
+            elif command == 'count' and cls in clss.keys():
+                self.do_count(cls)
 
 
 if __name__ == '__main__':
