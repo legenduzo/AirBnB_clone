@@ -198,6 +198,16 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
+    def default(self, line):
+        """
+        Default method
+        """
+        if '.' in line and '()' in line:
+            cls, command = line.split('.', 1)
+            command = command[:-2]
+            if command == 'all' and cls in clss.keys():
+                self.do_all(cls)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
