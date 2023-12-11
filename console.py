@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         if len(args) == 0:
-            print("** class name is missing **")
+            print("** class name missing **")
             return
         if len(args) > 0:
             if args[0] not in clss.keys():
