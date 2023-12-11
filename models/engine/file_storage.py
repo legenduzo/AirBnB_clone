@@ -26,7 +26,7 @@ clss = {
 """clss (dict): dictionary of class objects"""
 
 
-class FileStorage():
+class FileStorage:
     """
     Class responsible for handling file storage using JSON.
 
