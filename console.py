@@ -225,10 +225,19 @@ class HBNBCommand(cmd.Cmd):
             cls, command = line.split('.', 1)
             command, itemid = command.split('(')
             itemid = itemid.strip('")')
+            if ',' in itemid:
+                update_str = itemid.split(',')
+                itemid = update_str[0].strip('" ')
+                attr_name = update_str[1].strip(' "')
+                attr_val = update_str[2].strip(' "')
             if command == 'show' and cls in clss.keys():
                 self.do_show(cls + ' ' + itemid)
             elif command == 'destroy' and cls in clss.keys():
                 self.do_destroy(cls + ' ' + itemid)
+            elif command == 'update' and cls in clss.keys():
+                updtext = f"{cls} {itemid} {attr_name} {attr_val}"
+                print(updtext)
+                self.do_update(updtext)
 
 
 
