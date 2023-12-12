@@ -221,6 +221,13 @@ class HBNBCommand(cmd.Cmd):
                 self.do_all(cls)
             elif command == 'count' and cls in clss.keys():
                 self.do_count(cls)
+        elif '.' in line and '(' in line and ')' in line:
+            cls, command = line.split('.', 1)
+            command, itemid = command.split('(')
+            itemid = itemid.strip('")')
+            if command == 'show' and cls in clss.keys():
+                self.do_show(cls + ' ' + itemid)
+
 
 
 if __name__ == '__main__':
