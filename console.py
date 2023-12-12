@@ -227,6 +227,8 @@ class HBNBCommand(cmd.Cmd):
             itemid = itemid.strip('")')
             if command == 'show' and cls in clss.keys():
                 self.do_show(cls + ' ' + itemid)
+            elif command == 'destroy' and cls in clss.keys():
+                self.do_destroy(cls + ' ' + itemid)
 
 
 
