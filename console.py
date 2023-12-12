@@ -146,7 +146,6 @@ class HBNBCommand(cmd.Cmd):
         Example:
             (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
-        print(line)
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -190,7 +189,6 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(instance, attr_name, attr_value)
         storage.save()
-        print('success ****')
 
     def do_count(self, line):
         """
