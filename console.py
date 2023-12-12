@@ -176,11 +176,14 @@ class HBNBCommand(cmd.Cmd):
             attr_type = type(getattr(instance, attr_name))
             attr_value = attr_type(attr_val)
         else:
-            attr_value = (
-                    int(attr_val)
-                    if '.' not in attr_val
-                    else float(attr_val)
-                    )
+            try:
+                attr_value = (
+                        int(attr_val)
+                        if '.' not in attr_val
+                        else float(attr_val)
+                        )
+            except Exception:
+                attr_value = str(attr_val)
 
         setattr(instance, attr_name, attr_value)
         storage.save()
@@ -235,10 +238,8 @@ class HBNBCommand(cmd.Cmd):
             elif command == 'destroy' and cls in clss.keys():
                 self.do_destroy(cls + ' ' + itemid)
             elif command == 'update' and cls in clss.keys():
-                updtext = f"{cls} {itemid} {attr_name} {attr_val}"
-                print(updtext)
-                self.do_update(updtext)
-
+                args = [cls, itemid, attr_name, attr_val]
+                self.do_update(' '.join(args))
 
 
 if __name__ == '__main__':
