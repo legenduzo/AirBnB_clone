@@ -11,6 +11,8 @@ from models.state import State
 from models.user import User
 from models import storage
 import cmd
+import json
+from ast import literal_eval
 
 clss = {
     "BaseModel": BaseModel,
@@ -144,6 +146,7 @@ class HBNBCommand(cmd.Cmd):
         Example:
             (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
+        print(line)
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -187,6 +190,7 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(instance, attr_name, attr_value)
         storage.save()
+        print('success ****')
 
     def do_count(self, line):
         """
@@ -220,26 +224,43 @@ class HBNBCommand(cmd.Cmd):
         if '.' in line and '()' in line:
             cls, command = line.split('.', 1)
             command = command[:-2]
+
             if command == 'all' and cls in clss.keys():
                 self.do_all(cls)
             elif command == 'count' and cls in clss.keys():
                 self.do_count(cls)
+
         elif '.' in line and '(' in line and ')' in line:
             cls, command = line.split('.', 1)
             command, itemid = command.split('(')
             itemid = itemid.strip('")')
+
             if ',' in itemid:
-                update_str = itemid.split(',')
+                update_str = itemid.split(',', 1)
                 itemid = update_str[0].strip('" ')
-                attr_name = update_str[1].strip(' "')
-                attr_val = update_str[2].strip(' "')
+                if '{' not in update_str[1]:
+                    attr_name = update_str[1].split(',')[0].strip(' "')
+                    attr_val = update_str[1].split(',')[1].strip(' "')
+                else:
+                    upd_dict = literal_eval(update_str[1].strip())
+                    if command == 'update' and cls in clss.keys():
+                        for key, val in upd_dict.items():
+                            args = [cls, itemid, key, str(val)]
+                            self.do_update(' '.join(args))
+                        return
+
             if command == 'show' and cls in clss.keys():
                 self.do_show(cls + ' ' + itemid)
+                return
+
             elif command == 'destroy' and cls in clss.keys():
                 self.do_destroy(cls + ' ' + itemid)
+                return
+
             elif command == 'update' and cls in clss.keys():
                 args = [cls, itemid, attr_name, attr_val]
                 self.do_update(' '.join(args))
+                return
 
 
 if __name__ == '__main__':
