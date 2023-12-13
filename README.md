@@ -198,3 +198,6 @@ dd697519-4ac9-42e0-80e2-fa7b3ac61193
 | models | state.py | Creates class `state` |
 | models | user.py | Creates class `user` |
 | models/engine/ | file_storage.py | Serializes instances to a JSON file and deserializes JSON file to instances |
+
+## Authors
+List of authors can be found in the `AUTHORS` document
