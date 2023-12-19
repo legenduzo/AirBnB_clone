@@ -1,14 +1,4 @@
-html, body {
-	margin: 0;
-	height: 100%;
-	padding: 0;
-}
-
 body {
-	display: flex;
-	flex-direction: column;
-}
-
-main {
-	flex: 1;
+    margin: 0px;
+    padding: 0px;
 }
